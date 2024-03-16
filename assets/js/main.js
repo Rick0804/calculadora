@@ -1,29 +1,28 @@
-calculator = () => {
-    return {
-        display: document.querySelector(".display"),
+function calculator () {
+        this.display = document.querySelector(".display"),
 
-        start(){
+        this.start = () =>{
             this.detector();
             this.enterButton();
-        },
+        }
 
-        insertText(value){
+        this.insertText = (value) => {
             this.display.value += value.innerHTML;
-        },
+        }
 
-        cleanText(){
+        this.cleanText = () => {
             this.display.value = ' ';
-        },
+        }
 
-        enterButton(){
+        this.enterButton = () => {
             document.addEventListener('keyup', e => {
                 if(e.keyCode == 13){
                     this.calc();                    
                 }
             })
-        },
+        }
 
-        calc(){
+        this.calc = () => {
             const display = this.display.value;
             try{
                 this.display.value = eval(display);
@@ -32,12 +31,12 @@ calculator = () => {
             }
         },
 
-        erase(){
+        this.erase = () => {
             this.display.value = this.display.value.slice(0, -1);
 
         },
 
-        detector(){
+        this.detector = () => {
             document.addEventListener('click', e => {
                 const el = e.target;
                 if(el.classList.contains('btn-num')){
@@ -55,8 +54,8 @@ calculator = () => {
             })
         }
     }
-}
 
 
-const calc = calculator();
+
+const calc = new calculator();
 calc.start();
